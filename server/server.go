@@ -64,7 +64,7 @@ func Start() {
 	}
 
 	// Escuta nesse endereço
-	log.Printf("Listenning... %s", address)
+	log.Printf("Listening... %s", address)
 	log.Fatalln(http.ListenAndServe(address, router))
 }
 
