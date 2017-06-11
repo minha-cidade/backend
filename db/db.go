@@ -4,7 +4,6 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/jmoiron/sqlx"
 	"time"
-	"fmt"
 	"errors"
 )
 
@@ -13,7 +12,7 @@ var db *sqlx.DB;
 /**
  * Conecta ao banco de dados
  */
-func Connect(host string, info string) {
+func Connect(info string) {
 	db = sqlx.MustOpen("postgres", info)
 }
 

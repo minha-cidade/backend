@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"errors"
 	"strconv"
+	"os"
 )
 
 func apiNotFound(w http.ResponseWriter, r *http.Request) {
