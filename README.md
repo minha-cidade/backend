@@ -6,32 +6,15 @@ administrado pela [Secretaria da Transparência Pública](http://www.joaopessoa.
 A base de dados pode ser obtida na [página de download](http://transparencia.joaopessoa.pb.gov.br/download) (item *dados de despesas, receitas e entidades*)
 do mesmo.
 
-## Instalação
-
-### Docker
-Uma vez com o container configurado, execute os seguintes comando para compilar
-o servidor e para executá-lo:
-
-    $ docker build -t backend .
-
-    $ docker run -it --rm --name backend -p 8080:8080 backend
-
-### Manual
-Uma vez com Go instalado no seu sistema e o GOPATH e GOBIN corretamente definido, baixaremos
-esse repositório no workspace do Go:
-
-    $ go install github.com/minha-cidade/backend
-
-### Execução
-Para executá-lo, é necessário passar as configurações de conexão de banco de
-dados e endereço de binding do servidor através de variáveis de ambiente:
+### Configuração
+A configuração é dada através das seguintes **variáveis de ambiente**:
 
 * MINHACIDADE_BACKEND_ADDRESS
 
   Define o endereço de binding do servidor. Usa o formato `<endereço>:<porta>`,
   ou apenas `:<porta>`.
 
-  Exemplo:
+  Ex.:
 
       export MINHACIDADE_BACKEND_ADDRESS=":8080"
 
@@ -40,12 +23,24 @@ dados e endereço de binding do servidor através de variáveis de ambiente:
   Define as configurações de conexão com o banco de dados. Usa o formato descrito
   na [documentação do driver Postgres usado](https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters).
 
-  Exemplo:
+  Ex.:
 
       export MINHACIDADE_BACKEND_DB_INFO="host=127.0.0.1 port=5432 user=admin password=senha dbname=transparencia sslmode=disable"
 
-## Execução
+## Instalação
 
-Depois de configurado, basta chamar o binário *backend* para executá-lo.
+### Docker
+
+    $ docker build -t backend .
+
+#### Execução
+
+    $ docker run -it --rm --name backend -p 8080:8080 backend
+
+### Manual
+
+    $ go install github.com/minha-cidade/backend
+
+#### Execução
 
     $ backend

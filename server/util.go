@@ -27,5 +27,5 @@ func writeJson(w http.ResponseWriter, status int, data interface{}) {
 func writeJsonError(w http.ResponseWriter, status int, err error) {
 	writeJson(w, status, struct {
 		Error string `json:"error"`
-	} { err.Error() })
+	}{err.Error()})
 }

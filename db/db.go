@@ -1,13 +1,13 @@
 package db
 
 import (
-	_ "github.com/lib/pq"
-	"github.com/jmoiron/sqlx"
-	"time"
 	"errors"
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
+	"time"
 )
 
-var db *sqlx.DB;
+var db *sqlx.DB
 
 /**
  * Conecta ao banco de dados
@@ -18,7 +18,7 @@ func Connect(info string) {
 
 // Armazena as informações do gastômetro
 type Gastometro struct {
-	Area    string `json:"area"`
+	Area    string  `json:"area"`
 	Liquido float64 `json:"liquido"`
 	Pago    float64 `json:"pago"`
 	Alfa    float64 `json:"alfa"`
@@ -63,7 +63,7 @@ func GetGastometro() (Gastometros, error) {
 	gastometro := make(map[string]Gastometro)
 	for _, valor := range valores {
 		valor.Area = bancoDeDadosParaInterno(valor.Area)
-		
+
 		// Calcula o alpha
 		now := time.Now()
 		sec := now.
@@ -80,16 +80,16 @@ func GetGastometro() (Gastometros, error) {
 
 // Repasse anual
 type RepasseAnual struct {
-	Valor      float64  `json:"valor"`
-	Entidade   string `json:"entidade"`
-	Favorecido string `json:"favorecido"`
-	Codigo     string `json:"codigo"`
+	Valor      float64 `json:"valor"`
+	Entidade   string  `json:"entidade"`
+	Favorecido string  `json:"favorecido"`
+	Codigo     string  `json:"codigo"`
 }
 
 // Informações de determinada área
 type InformacoesArea struct {
-	Liquido  float64 `json:"liquido"`
-	Pago     float64       `json:"pago"`
+	Liquido  float64        `json:"liquido"`
+	Pago     float64        `json:"pago"`
 	TopVinte []RepasseAnual `json:"top20"`
 }
 
