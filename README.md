@@ -19,7 +19,7 @@ dados e endereço de binding do servidor através de variáveis de ambiente:
 
 * MINHACIDADE_BACKEND_ADDRESS
 
-  Define o endereço de binding do servidor. Usa o formato `<endereço>:<porta>``,
+  Define o endereço de binding do servidor. Usa o formato `<endereço>:<porta>`,
   ou apenas `:<porta>`.
 
   Exemplo:
