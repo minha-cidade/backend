@@ -2,7 +2,7 @@ package db
 
 func internoParaBancoDeDados(v string) string {
 switch v {
-	case "saude": return "SAÚDE"
+	case "saúde": return "SAÚDE"
 	case "desporto-e-lazer": return "DESPORTO E LAZER"
 	case "energia": return "ENERGIA"
 	case "legislativa": return "LEGISLATIVA"

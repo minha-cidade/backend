@@ -62,6 +62,8 @@ func GetGastometro() (Gastometros, error) {
 
 	gastometro := make(map[string]Gastometro)
 	for _, valor := range valores {
+		valor.Area = bancoDeDadosParaInterno(valor.Area)
+		
 		// Calcula o alpha
 		now := time.Now()
 		sec := now.
@@ -70,7 +72,7 @@ func GetGastometro() (Gastometros, error) {
 
 		// Reais gastos por segundo
 		valor.Alfa = valor.Pago / float64(sec)
-		gastometro[bancoDeDadosParaInterno(valor.Area)] = valor
+		gastometro[valor.Area] = valor
 	}
 
 	return gastometro, nil
