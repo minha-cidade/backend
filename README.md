@@ -1,4 +1,4 @@
-# Back-end Minha-Cidade em Golang
+# Back-end Minha Cidade em Golang
 O back-end tem a função de expor a API que será usada pelo front-end web e 
 mobile do projeto Minha Cidade, desenvolvido na HackFest 2017. Usa como base
 o banco de dados obtido do [Portal de Transparência de João Pessoa](http://transparencia.joaopessoa.pb.gov.br/),
