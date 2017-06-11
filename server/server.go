@@ -19,8 +19,7 @@ func Start() {
 
 	// Conecta ao banco de dados
 	log.Println("Conectando ao banco de dados...")
-	db.Connect("HOST", 5432, "USUARIO",
-		 "SENHA", "BANCO")
+	db.Connect(os.Getenv("MINHACIDADE_BACKEND_DB_INFO"))
 
 	// Api
 	api := router.PathPrefix("/api").Subrouter()
@@ -57,8 +56,15 @@ func Start() {
 	// Processa a página de 404
 	api.NotFoundHandler = http.HandlerFunc(apiNotFound)
 
-	log.Println("Listenning... :1337")
-	chk(http.ListenAndServe(":1337", router))
+	// Pega o endereço de bind do servidor
+	address := os.Getenv("MINHACIDADE_BACKEND_ADDR");
+	if address == "" {
+		address = ":8080"
+	}
+
+	// Escuta nesse endereço
+	log.Printf("Listenning... %s", address)
+	log.Fatalln(http.ListenAndServe(address, router))
 }
 
 func chk(err error) {

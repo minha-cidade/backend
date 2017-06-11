@@ -13,10 +13,8 @@ var db *sqlx.DB;
 /**
  * Conecta ao banco de dados
  */
-func Connect(host string, port int, username, password, dbname string) {
-	db = sqlx.MustOpen("postgres",
-		fmt.Sprintf(`host=%s port=%d user=%s password=%s dbname=%s sslmode=disable`,
-			host, port, username, password, dbname))
+func Connect(host string, info string) {
+	db = sqlx.MustOpen("postgres", info)
 }
 
 // Armazena as informações do gastômetro
