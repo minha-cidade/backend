@@ -9,7 +9,7 @@ do mesmo.
 ### Configuração
 A configuração é dada através das seguintes **variáveis de ambiente**:
 
-* MINHACIDADE_BACKEND_ADDRESS
+* *MINHACIDADE_BACKEND_ADDRESS*
 
   Define o endereço de binding do servidor. Usa o formato `<endereço>:<porta>`,
   ou apenas `:<porta>`.
@@ -18,7 +18,7 @@ A configuração é dada através das seguintes **variáveis de ambiente**:
 
       export MINHACIDADE_BACKEND_ADDRESS=":8080"
 
-* MINHACIDADE_BACKEND_DB_INFO
+* *MINHACIDADE_BACKEND_DB_INFO*
 
   Define as configurações de conexão com o banco de dados. Usa o formato descrito
   na [documentação do driver Postgres usado](https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters).
