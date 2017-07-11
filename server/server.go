@@ -34,7 +34,7 @@ func Start() {
 	middlewares := alice.New(
 		handlers.RecoveryHandler(),
 		handlers.CORS(handlers.AllowedOrigins([]string{"*"})),
-		stdoutLoggingHandler
+		stdoutLoggingHandler,
 	)
 
 	// Api
