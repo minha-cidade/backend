@@ -1,0 +1,5 @@
+{
+	"address": ":8080",
+	"databaseInfo": "localhost:27017",
+	"tokenSecretKey": "b221e5ed44be41e6547087c1fcff2094e7e7fb4b"
+}

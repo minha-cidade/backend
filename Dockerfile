@@ -1,17 +1,17 @@
-FROM golang:1.6
+FROM golang:latest
 
-# Instala o backend direto do GIT
-RUN go get github.com/minha-cidade/backend
+# Define diretório de trabalho
+WORKDIR /go/src/app
 
-# Define o endereço do servidor para o endereço local, porta 8080
-ENV MINHACIDADE_BACKEND_ADDRESS ":8080"
+# Copia os dados do arquivo pra imagem
+COPY . .
 
-# Define as informações do banco de dados para:
-# (https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters)
-ENV MINHACIDADE_BACKEND_DB_INFO "host=127.0.0.1 port=5432 user=admin password=senha123 dbname=banco sslmode=disable"
+# Baixa as dependências e instala o software
+RUN go-wrapper download
+RUN go-wrapper install
 
-# Exporta a porta 8080
+# Expõe a porta
 EXPOSE 8080
 
 # Executa
-CMD ["backend", "run"]
+CMD ["go-wrapper", "run"]

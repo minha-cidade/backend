@@ -6,27 +6,6 @@ administrado pela [Secretaria da Transparência Pública](http://www.joaopessoa.
 A base de dados pode ser obtida na [página de download](http://transparencia.joaopessoa.pb.gov.br/download) (item *dados de despesas, receitas e entidades*)
 do mesmo.
 
-### Configuração
-A configuração é dada através das seguintes **variáveis de ambiente**:
-
-* MINHACIDADE_BACKEND_ADDRESS
-
-  Define o endereço de binding do servidor. Usa o formato `<endereço>:<porta>`,
-  ou apenas `:<porta>`.
-
-  Ex.:
-
-      export MINHACIDADE_BACKEND_ADDRESS=":8080"
-
-* MINHACIDADE_BACKEND_DB_INFO
-
-  Define as configurações de conexão com o banco de dados. Usa o formato descrito
-  na [documentação do driver Postgres usado](https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters).
-
-  Ex.:
-
-      export MINHACIDADE_BACKEND_DB_INFO="host=127.0.0.1 port=5432 user=admin password=senha dbname=transparencia sslmode=disable"
-
 ## Instalação
 
 ### Docker
