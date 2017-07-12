@@ -21,31 +21,32 @@ func apiNotFound(w http.ResponseWriter, r *http.Request) {
 }
 
 func apiGastometro(w http.ResponseWriter, r *http.Request) {
-	gastometro, err := db.GetGastometro()
-	if err != nil {
-		writeJsonError(w, http.StatusInternalServerError, err)
-		return
-	}
-
-	writeJson(w, http.StatusOK, gastometro)
-}
-
-func apiArea(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	area := vars["area"]
+
+	// Extrai as variáveis do request
+	estado := vars["estado"]
+	cidade := vars["cidade"]
+
+	// Caso o ano seja inválido, retorna uma mensagem de erro dizendo que esse
+	// valor não existe
 	ano, err := strconv.Atoi(vars["ano"])
 	if err != nil {
 		writeJsonError(w, http.StatusBadRequest, AnoInvalidoError)
 		return
 	}
 
-	info, err := db.GetInformacoesArea(area, ano)
+	// Pega as informações do gastometro para esse request
+	gastometro, err := db.GetGastometroForYear(estado, cidade, ano)
 	if err != nil {
+		// TODO: englobar o bando de dados para retornar um erro mais significa-
+		// tivo, como NotFound e InternalError(errDoMongo)
 		writeJsonError(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	writeJson(w, http.StatusOK, info)
+	writeJson(w, http.StatusOK, struct {
+		Gastometro []*db.Gastometro `json:"gastometro"`
+	} { gastometro })
 }
 
 func apiGetToken(w http.ResponseWriter, r *http.Request) {

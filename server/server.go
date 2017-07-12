@@ -19,7 +19,7 @@ func Start() {
 
 	// Conecta ao banco de dados
 	log.Println("Conectando ao banco de dados...")
-	db.Connect(config.Get().DatabaseInfo)
+	chk(db.Connect())
 
 	// Autenticação via JWT
 	var jwtMiddleware = jwtmiddleware.New(jwtmiddleware.Options{
@@ -37,11 +37,10 @@ func Start() {
 		stdoutLoggingHandler,
 	)
 
-	// Api
-	api := router.PathPrefix("/api").Subrouter()
-	api.Handle("/gastometro", apiMiddlewares.Then(http.HandlerFunc(apiGastometro))).
-		Methods("GET")
-	api.Handle("/area/{area}/{ano}", apiMiddlewares.Then(http.HandlerFunc(apiArea))).
+	// Api v1
+	api := router.PathPrefix("/api/v1").Subrouter()
+	api.Handle("/{estado}/{cidade}/{ano}/gastometro",
+		apiMiddlewares.Then(http.HandlerFunc(apiGastometro))).
 		Methods("GET")
 	api.Handle("/get-token", http.HandlerFunc(apiGetToken)).
 		Methods("GET")
