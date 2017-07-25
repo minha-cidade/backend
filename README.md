@@ -18,6 +18,7 @@ do mesmo.
 
 ### Manual
 
+    $ go get github.com/minha-cidade/backend
     $ go install github.com/minha-cidade/backend
 
 #### Execução
