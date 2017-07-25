@@ -11,9 +11,9 @@ type Transferencia struct {
 type Gastometro struct {
 	Ano int `bson:"ano" json:"ano"`
 
-	IDCidade string `bson:"idCidade" json:"idCidade"`
-	IDEstado string `bson:"idEstado" json:"idEstado"`
-	IDArea   string `bson:"idArea" json:"idArea"`
+	IdCidade string `bson:"idCidade" json:"idCidade"`
+	IdEstado string `bson:"idEstado" json:"idEstado"`
+	IdArea   string `bson:"idArea" json:"idArea"`
 
 	Cidade string `bson:"cidade" json:"cidade"`
 	Estado string `bson:"estado" json:"estado"`
@@ -26,4 +26,16 @@ type Gastometro struct {
 	// Top vinte transações realizadas com dinheiro público nesse espaço
 	// de tempo
 	TopVinte []Transferencia `bson:"topVinte" json:"topVinte"`
+}
+
+// Abstrai a informação de uma determinada cidade
+type Cidade struct {
+	Id    string `json:"id" bson:"id"`
+	Nome  string `json:"nome" bson:"nome"`
+	Anos  []int `json:"anos" bson:"anos"`
+	Areas []struct {
+		Id   string `json:"id" bson:"id"`
+		Nome string `json:"nome" bson:"nome"`
+	} `json:"areas" bson:"areas"`
+
 }

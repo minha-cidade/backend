@@ -1,8 +1,6 @@
 package server
 
 import (
-	"github.com/auth0/go-jwt-middleware"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/justinas/alice"
@@ -21,16 +19,7 @@ func Start() {
 	log.Println("Conectando ao banco de dados...")
 	chk(db.Connect())
 
-	// Autenticação via JWT
-	var jwtMiddleware = jwtmiddleware.New(jwtmiddleware.Options{
-		ValidationKeyGetter: func(_ *jwt.Token) (interface{}, error) {
-			return config.Get().TokenSecretKey, nil
-		},
-		SigningMethod: jwt.SigningMethodHS256,
-	})
-
 	// Configura os middlewares
-	apiMiddlewares := alice.New(jwtMiddleware.Handler)
 	middlewares := alice.New(
 		handlers.RecoveryHandler(),
 		handlers.CORS(handlers.AllowedOrigins([]string{"*"})),
@@ -39,10 +28,11 @@ func Start() {
 
 	// Api v1
 	api := router.PathPrefix("/api/v1").Subrouter()
-	api.Handle("/{estado}/{cidade}/{ano}/gastometro",
-		apiMiddlewares.Then(http.HandlerFunc(apiGastometro))).
+	api.Handle("/cidades",
+		http.HandlerFunc(apiCidades)).
 		Methods("GET")
-	api.Handle("/get-token", http.HandlerFunc(apiGetToken)).
+	api.Handle("/cidades/{cidade}",
+		http.HandlerFunc(apiCidade)).
 		Methods("GET")
 
 	// Processa a página de 404

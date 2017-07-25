@@ -9,7 +9,6 @@ import (
 type Config struct {
 	Address        string `json:"address"`
 	DatabaseInfo   string `json:"databaseInfo"`
-	TokenSecretKey []byte `json:"tokenSecretKey"`
 }
 
 var config Config
