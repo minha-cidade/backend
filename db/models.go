@@ -3,7 +3,7 @@ package db
 // Transferência realizada entre um credor e um favorecido
 type Transferencia struct {
 	Favorecido string  `bson:"favorecido" json:"favorecido"`
-	Credor     string  `bson:"credor" json:"credor"`
+	Pagante    string  `bson:"pagante" json:"pagante"`
 	Valor      float64 `bson:"valor" json:"valor"`
 }
 
