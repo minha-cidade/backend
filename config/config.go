@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Address        string `json:"address"`
 	DatabaseInfo   string `json:"databaseInfo"`
+	AllowedOrigins []string `json:"allowedOrigins"`
 }
 
 var config Config

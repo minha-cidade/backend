@@ -22,7 +22,7 @@ func Start() {
 	// Configura os middlewares
 	middlewares := alice.New(
 		handlers.RecoveryHandler(),
-		handlers.CORS(handlers.AllowedOrigins([]string{"*"})),
+		handlers.CORS(handlers.AllowedOrigins(config.Get().AllowedOrigins),
 		stdoutLoggingHandler,
 	)
 
