@@ -36,7 +36,7 @@ func Start() {
 		Methods("GET")
 
 	// Processa a página de 404
-	api.NotFoundHandler = http.HandlerFunc(apiNotFound)
+	router.NotFoundHandler = http.HandlerFunc(apiNotFound)
 
 	// Escuta nesse endereço
 	addr := config.Get().Address
