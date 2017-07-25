@@ -1,0 +1,11 @@
+# Endereço o qual o servidor aceitará requests
+address: :8080
+
+# Endereço do banco de dados MongoDB seguindo o formato Connection String
+# https://docs.mongodb.com/manual/reference/connection-string/
+databaseInfo: mongodb://localhost:27017
+
+# Endereços que o sevidor enviará no header CORS (Cross-origin resource sharing)
+# https://pt.wikipedia.org/wiki/Cross-origin_resource_sharing
+allowedOrigins:
+    - "*"

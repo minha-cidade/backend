@@ -1,26 +1,21 @@
-# Back-end Minha Cidade em Golang
-O back-end tem a função de expor a API que será usada pelo front-end web e
-mobile do projeto Minha Cidade, desenvolvido na HackFest 2017. Usa como base
-o banco de dados obtido do [Portal de Transparência de João Pessoa](http://transparencia.joaopessoa.pb.gov.br/),
-administrado pela [Secretaria da Transparência Pública](http://www.joaopessoa.pb.gov.br/secretarias/setransp/).
-A base de dados pode ser obtida na [página de download](http://transparencia.joaopessoa.pb.gov.br/download) (item *dados de despesas, receitas e entidades*)
-do mesmo.
+# Backend Minha Cidade em Go
+## Introdução
+O Backend Minha Cidade expõe uma API de fácil acesso aos dados coletados
+pelo (Crawler Minha Cidade)[https://github.com/minha-cidade/crawler], provendo
+uma forma simples e eficiente de analisar dados públicos referentes às despesas
+municipais.
+
+## Configuração
+Uma vez com o repositório baixado em seu computador, copie o arquivo
+`config.template.yml` para `config.yml` e edite seu conteúdo conforme é
+explicado nele.
 
 ## Instalação
-
-### Docker
+Na pasta do repositório, execute o seguinte comando para criar uma imagem docker
+com o Backend
 
     $ docker build -t backend .
 
-#### Execução
+Depois de criado a imagem, execute o seguinte comando para executar a aplicação
 
     $ docker run -it --rm --name backend -p 8080:8080 backend
-
-### Manual
-
-    $ go get github.com/minha-cidade/backend
-    $ go install github.com/minha-cidade/backend
-
-#### Execução
-
-    $ backend
