@@ -1,7 +1,7 @@
 # Backend Minha Cidade em Go
 ## Introdução
 O Backend Minha Cidade expõe uma API de fácil acesso aos dados coletados
-pelo (Crawler Minha Cidade)[https://github.com/minha-cidade/crawler], provendo
+pelo [Crawler Minha Cidade](https://github.com/minha-cidade/crawler), provendo
 uma forma simples e eficiente de analisar dados públicos referentes às despesas
 municipais.
 
