@@ -26,7 +26,7 @@ func apiCidades(w http.ResponseWriter, r *http.Request) {
 
 	writeJson(w, http.StatusOK, struct {
 		Cidades []*db.Cidade `json:"cidades"`
-	} { cidades })
+	}{cidades})
 }
 
 func apiCidade(w http.ResponseWriter, r *http.Request) {
@@ -63,10 +63,10 @@ func apiCidade(w http.ResponseWriter, r *http.Request) {
 
 	// Caso não tenha encontrado nenhum resultado, envia um resultado vazio
 	if gastometro == nil {
-		gastometro = []*db.Gastometro{ }
+		gastometro = []*db.Gastometro{}
 	}
 
 	writeJson(w, http.StatusOK, struct {
 		Gastometro []*db.Gastometro `json:"gastometro"`
-	} { gastometro })
+	}{gastometro})
 }

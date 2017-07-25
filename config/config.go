@@ -7,8 +7,8 @@ import (
 )
 
 type Config struct {
-	Address        string `yaml:"address"`
-	DatabaseInfo   string `yaml:"databaseInfo"`
+	Address        string   `yaml:"address"`
+	DatabaseInfo   string   `yaml:"databaseInfo"`
 	AllowedOrigins []string `yaml:"allowedOrigins"`
 }
 

@@ -1,9 +1,9 @@
 package db
 
 import (
+	"github.com/minha-cidade/backend/config"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/minha-cidade/backend/config"
 )
 
 var conn struct {
@@ -27,7 +27,7 @@ func Connect() (err error) {
 func SearchGastometro(cidade string, area string, ano int) (
 	gastometro []*Gastometro, err error) {
 
-	query := bson.M{ "idCidade": cidade }
+	query := bson.M{"idCidade": cidade}
 	if area != "" {
 		query["idArea"] = area
 	}
@@ -45,13 +45,13 @@ func GetCidades() (cidades []*Cidade, err error) {
 		{
 			"$group": bson.M{
 				"_id": bson.M{
-					"id": "$idCidade",
+					"id":   "$idCidade",
 					"nome": "$cidade",
 				},
-				"anos": bson.M{ "$addToSet": "$ano" },
+				"anos": bson.M{"$addToSet": "$ano"},
 				"areas": bson.M{
 					"$addToSet": bson.M{
-						"id": "$idArea",
+						"id":   "$idArea",
 						"nome": "$area",
 					},
 				},
@@ -59,11 +59,11 @@ func GetCidades() (cidades []*Cidade, err error) {
 		},
 		{
 			"$project": bson.M{
-				"_id": false,
-				"anos": true,
+				"_id":   false,
+				"anos":  true,
 				"areas": true,
-				"id": "$_id.id",
-				"nome": "$_id.nome",
+				"id":    "$_id.id",
+				"nome":  "$_id.nome",
 			},
 		},
 	}).All(&cidades)

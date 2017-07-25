@@ -32,10 +32,9 @@ type Gastometro struct {
 type Cidade struct {
 	Id    string `json:"id" bson:"id"`
 	Nome  string `json:"nome" bson:"nome"`
-	Anos  []int `json:"anos" bson:"anos"`
+	Anos  []int  `json:"anos" bson:"anos"`
 	Areas []struct {
 		Id   string `json:"id" bson:"id"`
 		Nome string `json:"nome" bson:"nome"`
 	} `json:"areas" bson:"areas"`
-
 }
