@@ -22,14 +22,15 @@ func Start() {
 	// Configura os middlewares
 	middlewares := alice.New(
 		handlers.RecoveryHandler(),
-		handlers.CORS(handlers.AllowedOrigins(config.Get().AllowedOrigins)),
-		stdoutLoggingHandler,
-	)
+		handlers.CORS(handlers.AllowedOrigins(config.Get().AllowedOrigins)))
 
 	// Caso uma reverse proxy seja configurada
 	if config.Get().ReverseProxy {
 		middlewares = middlewares.Append(handlers.ProxyHeaders)
 	}
+
+	// Adiciona logging
+	middlewares = middlewares.Append(stdoutLoggingHandler)
 
 	// Api v1
 	api := router.PathPrefix("/api/v1").Subrouter()
