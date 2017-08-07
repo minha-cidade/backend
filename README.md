@@ -6,9 +6,27 @@ uma forma simples e eficiente de analisar dados públicos referentes às despesa
 municipais.
 
 ## Configuração
-Uma vez com o repositório baixado em seu computador, copie o arquivo
-`config.template.yml` para `config.yml` e edite seu conteúdo conforme é
-explicado nele.
+A configuração é enviada através das seguintes variáveis de ambiente:
+
+* `BACKEND_LISTEN_ADDRESS` (default: `":8080"`)
+
+  Endereço o qual o servidor aceitará requests.
+
+
+* `BACKEND_MONGO_CONNECTION_STRING` (default: `"mongodb://localhost"`)
+
+  Endereço do banco de dados MongoDB seguindo o formato [Connection String](https://docs.mongodb.com/manual/reference/connection-string/).
+
+
+* `BACKEND_CORS_ALLOWED_ORIGINS` (default: `"*"`)
+
+  Endereços que o sevidor enviará no header [CORS](https://pt.wikipedia.org/wiki/Cross-origin_resource_sharing) separados
+  por vírgula, sem espaço.
+
+  Ex:
+
+      "google.com,yahoo.com,bing.com"
+
 
 ## Instalação
 Na pasta do repositório, execute o seguinte comando para criar uma imagem docker

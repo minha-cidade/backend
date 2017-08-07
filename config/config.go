@@ -1,27 +1,37 @@
 package config
 
 import (
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"log"
+	"os"
+	"strings"
 )
 
 type Config struct {
-	Address        string   `yaml:"address"`
-	DatabaseInfo   string   `yaml:"databaseInfo"`
-	AllowedOrigins []string `yaml:"allowedOrigins"`
+	Address        string
+	DatabaseInfo   string
+	AllowedOrigins []string
 }
 
 var config Config
 
 func init() {
-	data, err := ioutil.ReadFile("config.yml")
-	if err != nil {
-		log.Fatalln("Falha lendo arquivo de configuração:", err)
+	// Lê o endereço de listen do servidor
+	config.Address = os.Getenv("BACKEND_LISTEN_ADDRESS")
+	if config.Address == "" {
+		config.Address = ":8080"
 	}
 
-	if err := yaml.Unmarshal(data, &config); err != nil {
-		log.Fatalln("Falha processando arquivo de configuração:", err)
+	// Lê o endereço do banco de dados Mongo
+	config.DatabaseInfo = os.Getenv("BACKEND_MONGO_CONNECTION_STRING")
+	if config.DatabaseInfo == "" {
+		config.DatabaseInfo = "mongodb://localhost"
+	}
+
+	// Lê os endereços cors
+	cors := os.Getenv("BACKEND_CORS_ALLOWED_ORIGINS")
+	if cors == "" {
+		config.AllowedOrigins = []string{"*"}
+	} else {
+		config.AllowedOrigins = strings.Split(cors, ",")
 	}
 }
 
