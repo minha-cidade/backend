@@ -26,6 +26,11 @@ func Start() {
 		stdoutLoggingHandler,
 	)
 
+	// Caso uma reverse proxy seja configurada
+	if config.Get().ReverseProxy {
+		middlewares = middlewares.Append(handlers.ProxyHeaders)
+	}
+
 	// Api v1
 	api := router.PathPrefix("/api/v1").Subrouter()
 	api.Handle("/cidades",

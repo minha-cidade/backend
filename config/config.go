@@ -9,6 +9,7 @@ type Config struct {
 	Address        string
 	DatabaseInfo   string
 	AllowedOrigins []string
+	ReverseProxy   bool
 }
 
 var config Config
@@ -25,6 +26,9 @@ func init() {
 	if config.DatabaseInfo == "" {
 		config.DatabaseInfo = "mongodb://localhost"
 	}
+
+	// Lê sobe a configuração de reverse proxy
+	config.ReverseProxy = os.Getenv("BACKEND_REVERSE_PROXY") == "true"
 
 	// Lê os endereços cors
 	cors := os.Getenv("BACKEND_CORS_ALLOWED_ORIGINS")
