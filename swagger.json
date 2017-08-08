@@ -1,0 +1,164 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A API tem um como objetivo disponibilizar dados públicos de forma mais fácil, para que desenvolvedores possam usá-los para criar aplicações que visam a melhoria na administração pública de sua cidade.",
+    "version": "1.0.0",
+    "title": "Minha Cidade"
+  },
+  "host": "minhacidade.top",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/api/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/cidades": {
+      "get": {
+        "summary": "Informações da cidades",
+        "description": "Retorna todas as cidades que estão disponíveis para consulta",
+        "responses": {
+          "200": {
+            "description": "Retorna a listagem de cidades que estão disponíveis para consulta.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cidade"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cidades/{cidade}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cidade",
+            "description": "A cidade em questão. Pode ser obtido através do campo 'id' da rota /cidades",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "description": "A área de atuação em questão. Precisa ser um valor válido entre os 'ids' disponíveis no campo 'areas', como consta na rota /cidades",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ano",
+            "description": "O ano em questão. Precisa ser um valor válido entre os anos disponíveis para essa cidade, como consta na rota '/cidades'",
+            "type": "integer"
+          }
+        ],
+        "summary": "Listagem de gastometros",
+        "description": "Retorna a listagem de gastometros para um determinado ano e área de atuação",
+        "responses": {
+          "200": {
+            "description": "Retorna a listagem de gastometros para um determinado ano e área de atuação",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Gastometro"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Gastometro": {
+      "type": "object",
+      "properties": {
+        "ano": {
+          "type": "integer"
+        },
+        "idCidade": {
+          "type": "string"
+        },
+        "idEstado": {
+          "type": "string"
+        },
+        "idArea": {
+          "type": "string"
+        },
+        "cidade": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "string"
+        },
+        "area": {
+          "type": "string"
+        },
+        "pago": {
+          "type": "number"
+        },
+        "liquidado": {
+          "type": "number"
+        },
+        "empenhado": {
+          "type": "number"
+        },
+        "topVinte": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Transferencia"
+          }
+        }
+      }
+    },
+    "Transferencia": {
+      "type": "object",
+      "properties": {
+        "favorecido": {
+          "type": "string"
+        },
+        "pagante": {
+          "type": "string"
+        },
+        "valor": {
+          "type": "number"
+        }
+      }
+    },
+    "Cidade": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "anos": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
