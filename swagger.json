@@ -25,9 +25,14 @@
           "200": {
             "description": "Retorna a listagem de cidades que estão disponíveis para consulta.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Cidade"
+              "type": "object",
+              "properties": {
+                "cidades": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Cidade"
+                  }
+                }
               }
             }
           }
@@ -63,9 +68,14 @@
           "200": {
             "description": "Retorna a listagem de gastometros para um determinado ano e área de atuação",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Gastometro"
+              "type": "object",
+              "properties": {
+                "gastometro": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Gastometro"
+                  }
+                }
               }
             }
           }
