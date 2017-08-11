@@ -44,3 +44,7 @@ com o Backend
 Depois de criado a imagem, execute o seguinte comando para executar a aplicação
 
     $ docker run -it --rm --name backend -p 8080:8080 backend
+
+## Documentação da API
+
+A documentação da API pode ser acessada via pelo site https://app.swaggerhub.com/apis/vtfr/minha-cidade/1.0.0
