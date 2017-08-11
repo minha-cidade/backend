@@ -11,7 +11,7 @@ func writeJson(w http.ResponseWriter, status int, data interface{}) {
 	buf := new(bytes.Buffer)
 
 	// Define o header application/json
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Content-Type", "application/json")
 
 	// Tenta escrever para um buffer, caso contrário retorna um erro
 	if err := json.NewEncoder(buf).Encode(data); err != nil {
