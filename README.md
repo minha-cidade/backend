@@ -47,4 +47,4 @@ Depois de criado a imagem, execute o seguinte comando para executar a aplicaçã
 
 ## Documentação da API
 
-A documentação da API pode ser acessada via pelo site https://app.swaggerhub.com/apis/vtfr/minha-cidade/1.0.0
+A documentação da API pode ser acessada via pelo site https://minha-cidade.github.io/developer/ ou pelo arquivo `swagger.json`.
